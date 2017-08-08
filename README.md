@@ -8,6 +8,7 @@ Currently this repo is compatible with Tensorflow r1.0.
 ## News
 | Date     | Update |
 |----------|--------|
+| 2017-08-08 | Added multiple GPU training and L2-Softmax.|
 | 2017-03-02 | Added pretrained models that generate 128-dimensional embeddings.|
 | 2017-02-22 | Updated to Tensorflow r1.0. Added Continuous Integration using Travis-CI.|
 | 2017-02-03 | Added models where only trainable variables has been stored in the checkpoint. These are therefore significantly smaller. |

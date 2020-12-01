@@ -20,6 +20,8 @@ Currently this repo is compatible with Tensorflow r1.0.
 |-----------------|--------------|------------------|
 | [20170214-092102](https://drive.google.com/open?id=0B5MzpY9kBtDVS214bHdvd2RGS3M) | 0.986        | CASIA-WebFace    |
 | [20170216-091149](https://drive.google.com/open?id=0B5MzpY9kBtDVTGZjcWkzT3pldDA) | 0.993        | MS-Celeb-1M      |
+| [20180408-102900](https://drive.google.com/open?id=1R77HmFADxe87GmoLwzfgMu_HY0IhcyBz) | 0.9905       | CASIA-WebFace    |
+| [20180402-114759](https://drive.google.com/open?id=1EXPBSXwTaqrSC0OhUdXNmKSh9qJUQ55-) | 0.9965       | VGGFace2         |
 
 ## Inspiration
 The code is heavly inspired by the [OpenFace](https://github.com/cmusatyalab/openface) implementation.

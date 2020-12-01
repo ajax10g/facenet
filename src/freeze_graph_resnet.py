@@ -35,6 +35,7 @@ import sys
 import tensorflow.contrib.slim as slim
 import importlib
 import re
+import facenet #clpham:
 
 def get_model_filenames(model_dir):
     files = os.listdir(model_dir)
@@ -84,12 +85,14 @@ def main(args):
                     scope='Bottleneck', reuse=False)
             embeddings = tf.nn.l2_normalize(bottleneck, 1, 1e-10, name='embeddings')
             print('Model directory: %s' % args.model_dir)
-            _, ckpt_file = get_model_filenames(os.path.expanduser(args.model_dir))
+            # _, ckpt_file = get_model_filenames(os.path.expanduser(args.model_dir))
+            meta_file, ckpt_file = facenet.get_model_filenames(os.path.expanduser(args.model_dir)) #clpham:to fix "Key Bottleneck/BatchNorm/beta not found..."
             
             print('Checkpoint file: %s' % ckpt_file)
 
             model_dir_exp = os.path.expanduser(args.model_dir)
-            saver = tf.train.Saver()
+            # saver = tf.train.Saver()
+            saver = tf.train.import_meta_graph(os.path.join(model_dir_exp, meta_file), clear_devices=True) #clpham:to fix "Key Bottleneck/BatchNorm/beta not found"
             tf.get_default_session().run(tf.global_variables_initializer())
             tf.get_default_session().run(tf.local_variables_initializer())
             saver.restore(tf.get_default_session(), os.path.join(model_dir_exp, ckpt_file))
@@ -99,7 +102,7 @@ def main(args):
             for node in gd.node:            
                 if node.op == 'RefSwitch':
                     node.op = 'Switch'
-                    for index in xrange(len(node.input)):
+                    for index in range(len(node.input)): #clpham: was=xrange, to support python3
                         if 'moving_' in node.input[index]:
                             node.input[index] = node.input[index] + '/read'
                 elif node.op == 'AssignSub':

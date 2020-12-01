@@ -55,7 +55,7 @@ def main(args):
             for node in gd.node:            
                 if node.op == 'RefSwitch':
                     node.op = 'Switch'
-                    for index in xrange(len(node.input)):
+                    for index in range(len(node.input)): #clpham: was=xrange, to support python3
                         if 'moving_' in node.input[index]:
                             node.input[index] = node.input[index] + '/read'
                 elif node.op == 'AssignSub':
